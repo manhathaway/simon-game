@@ -1,0 +1,128 @@
+html {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 62.5%
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#game,
+#overlay {
+  width: 100vw;
+  height: 100vh;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #011F3F;
+}
+
+#overlay {
+  position: absolute;
+  z-index: 1;
+}
+
+#game {
+  flex-direction: column;
+}
+
+#overlay h1,
+#level-title,
+#description {
+  color: #FEF2BF;
+}
+
+#description {
+  font-size: 2rem;
+  margin-bottom: 50px;
+  overflow: auto;
+  width: 500px;
+  line-height: 30px;
+  text-align: center;
+
+  position: absolute;
+  bottom: 0;
+}
+
+#level-title {
+  font-size: 8rem;
+  margin-bottom: 50px;
+}
+
+.container {
+  text-align: center;
+}
+
+.btn {
+  display: inline-block;
+  height: 200px;
+  width: 200px;
+  margin: 10px;
+}
+
+.red {
+  background-color: red;
+  border-radius: 0 100% 0 0;
+  border: 15px solid rgb(200, 0, 0);
+}
+
+.green {
+  background-color: green;
+  border-radius: 100% 0 0 0;
+  border: 15px solid rgb(0, 100, 0);
+}
+
+.purple {
+  background-color: purple;
+  border-radius: 0 0 100% 0;
+  border: 15px solid rgb(100, 0, 100);
+}
+
+.yellow {
+  background-color: yellow;
+  border-radius: 0 0 0 100%;
+  border: 15px solid rgb(200, 200, 0);
+}
+
+.pressed {
+  box-shadow: 0 0 20px white;
+  background-color: white;
+  border: 15px solid rgb(235, 235, 235);
+}
+
+@media screen and (max-width: 600px) {
+  #level-title {
+    font-size: 13.25vw;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  #description {
+    font-size: 3.6vw;
+    width: fit-content;
+    margin: 0 25px 50px 25px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .btn {
+    width: 40vw;
+    height: 40vw;
+  }
+}
+
+@media screen and (max-height: 900px) {
+  #description {
+    margin: 0 25px 25px 25px;
+  }
+}
+
+@media screen and (max-height: 800px) {
+  #description {
+    display: none;
+  }
+}
