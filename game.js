@@ -65,6 +65,7 @@ $(window).one('keydown', function(){
     }, 1000)
 });
 
+/*
 $(window).one('click', function(){
     $("#overlay").fadeToggle();
     $("#level-title").text(`Level ${level}`);
@@ -72,3 +73,4 @@ $(window).one('click', function(){
         nextSequence();
     }, 1000)
 });
+*/
