@@ -4,10 +4,9 @@ let userClickedPattern = [];
 let level = 0;
 
 $(".btn").click(function() {
-    let userChosenColor = this.id;
-    animatePress(userChosenColor);
-    playSound(userChosenColor);
-    userClickedPattern.push(userChosenColor);
+    animatePress(this.id, "userPressed");
+    playSound(this.id);
+    userClickedPattern.push(this.id);
 
     if (userClickedPattern[userClickedPattern.length - 1] !== gamePattern[userClickedPattern.length - 1]) {
         let gameOver = new Audio("./sounds/wrong.mp3");
@@ -35,29 +34,31 @@ function nextSequence() {
     let randomNumber = Math.round(Math.random() * 3);
     let randomChosenColor = buttonColors[randomNumber];
     gamePattern.push(randomChosenColor);
-    for (let i = 0; i < gamePattern.length; i++) {
-        (function(i) {
-            setTimeout(function() {
-                playSound(gamePattern[i]);
-            }, 500 * i);
-        })(i);
-    }
+    setTimeout(function(){
+        for (let i = 0; i < gamePattern.length; i++) {
+            (function(i) {
+                setTimeout(function() {
+                    animatePress(gamePattern[i], "gamePressed")
+                    playSound(gamePattern[i]);
+                }, 500 * i);
+            })(i);
+        }
+    }, 500);
 }
 
-function playSound(name) {
-    $(`#${name}`).fadeIn(100).fadeOut(100).fadeIn(100);
-    let buttonSound = new Audio(`./sounds/${name}.mp3`);
+function playSound(htmlId) {
+    let buttonSound = new Audio(`./sounds/${htmlId}.mp3`);
     buttonSound.play();
 }
 
-function animatePress(currentColor) {
-    $(`#${currentColor}`).addClass("pressed");
+function animatePress(htmlId, cssClass) {
+    $(`#${htmlId}`).addClass(cssClass);
     setTimeout(function(){
-        $(`#${currentColor}`).removeClass("pressed");
-    }, 100);
+        $(`#${htmlId}`).removeClass(cssClass);
+    }, 250);
 }
 
-$(window).one('keydown', function(){
+$(document).one('keydown', function(){
     $("#overlay").fadeToggle();
     $("#level-title").text(`Level ${level}`);
     setTimeout(function(){
@@ -65,12 +66,10 @@ $(window).one('keydown', function(){
     }, 1000)
 });
 
-/*
-$(window).one('click', function(){
+$(document).one('click', function(){
     $("#overlay").fadeToggle();
     $("#level-title").text(`Level ${level}`);
     setTimeout(function(){
         nextSequence();
     }, 1000)
 });
-*/
