@@ -58,14 +58,6 @@ function animatePress(htmlId, cssClass) {
     }, 250);
 }
 
-$(document).one('keydown', function(){
-    $("#overlay").fadeToggle();
-    $("#level-title").text(`Level ${level}`);
-    setTimeout(function(){
-        nextSequence();
-    }, 1000)
-});
-
 $(document).one('click', function(){
     $("#overlay").fadeToggle();
     $("#level-title").text(`Level ${level}`);
